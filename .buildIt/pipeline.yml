@@ -1,0 +1,22 @@
+steps:
+
+  - name: 'Test1'
+    commands:
+      - echo 'executing step < Test1 >'
+      - ping localhost -w 10
+    agent:
+      queue: 'pubsub-dev'
+
+  - name: 'Test2'
+    commands:
+      - echo 'executing step < Test2 >'
+      - ping localhost -w 10
+    agents:
+      queue: 'pubsub-dev'
+
+  - name: 'Test3'
+    commands:
+      - echo 'executing step < Test3 >'
+      - ping localhost -w 10
+    agents:
+      queue: 'pubsub-dev'
