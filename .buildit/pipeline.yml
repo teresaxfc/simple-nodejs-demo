@@ -1,22 +1,76 @@
 steps:
 
-  - name: 'Test1'
+  - name: 'install dependencies'
     commands:
-      - echo 'executing step < Test1 >'
-      - ping localhost -w 10
+      - echo 'executing step < install dependencies >'
+      - ping localhost -w 5
     agent:
       queue: 'pubsub-dev'
 
-  - name: 'Test2'
+  - name: 'unit test'
     commands:
-      - echo 'executing step < Test2 >'
-      - ping localhost -w 10
+      - echo 'executing step < unit test >'
+      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
+    dependsOn:
+      - 'install dependencies'
 
-  - name: 'Test3'
+  - name: 'deploy dev environment'
     commands:
-      - echo 'executing step < Test3 >'
-      - ping localhost -w 10
+      - echo 'executing step < deploy dev environment >'
+      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
+    dependsOn:
+      - 'install dependencies'
+
+  - name: 'integration test'
+    commands:
+      - echo 'executing step < integration test >'
+      - ping localhost -w 5
+    agents:
+      queue: 'pubsub-dev'
+    dependsOn:
+      - 'deploy dev environment'
+
+  - name: 'api test'
+    commands:
+      - echo 'executing step < api test >'
+      - ping localhost -w 5
+    agents:
+      queue: 'pubsub-dev'
+    dependsOn:
+      - 'deploy dev environment'
+
+  - name: 'end to end test'
+    commands:
+      - echo 'executing step < end to end test >'
+      - ping localhost -w 5
+    agents:
+      queue: 'pubsub-dev'
+    dependsOn:
+      - 'deploy dev environment'
+
+  - name: 'deploy production'
+    commands:
+      - echo 'executing step < integration test >'
+      - ping localhost -w 5
+    agents:
+      queue: 'pubsub-dev'
+    dependsOn:
+      - 'unit test'
+      - 'integration test'
+      - 'api test'
+      - 'end to end test'
+    branch: 'master'
+
+  - name: 'smoke test'
+    commands:
+      - echo 'executing step < integration test >'
+      - ping localhost -w 5
+    agents:
+      queue: 'pubsub-dev'
+    dependsOn:
+      - 'deploy production'
+    branch: 'master'
