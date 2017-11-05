@@ -1,4 +1,4 @@
-steps:
+buildTasks:
 
   - name: 'install dependencies'
     commands:
