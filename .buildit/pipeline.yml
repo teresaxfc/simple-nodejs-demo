@@ -1,4 +1,4 @@
-steps:
+buildTasks:
 
   - name: 'install dependencies'
     commands:
@@ -13,7 +13,8 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'install dependencies'
+    dependsOn:
+      - 'install dependencies'
 
   - name: 'deploy dev environment'
     commands:
@@ -21,7 +22,8 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'install dependencies'
+    dependsOn:
+      - 'install dependencies'
 
   - name: 'integration test'
     commands:
@@ -29,7 +31,8 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'deploy dev environment'
+    dependsOn:
+      - 'deploy dev environment'
 
   - name: 'api test'
     commands:
@@ -37,7 +40,8 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'deploy dev environment'
+    dependsOn:
+      - 'deploy dev environment'
 
   - name: 'end to end test'
     commands:
@@ -45,7 +49,8 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'deploy dev environment'
+    dependsOn:
+      - 'deploy dev environment'
 
   - name: 'deploy production'
     commands:
@@ -66,5 +71,6 @@ steps:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    depends-on: 'deploy production'
+    dependsOn:
+      - 'deploy production'
     branch: 'master'
