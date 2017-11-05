@@ -58,7 +58,7 @@ buildTasks:
       - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
-    dependsOn:
+    depends-on:
       - 'unit test'
       - 'integration test'
       - 'api test'
