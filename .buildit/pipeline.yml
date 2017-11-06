@@ -1,5 +1,12 @@
 buildTasks:
 
+  - name: 'test for different branch'
+    commands:
+      - echo 'executing step < 'test for different branch' >'
+      - ping localhost -w 5
+    agent:
+      queue: 'pubsub-dev'
+
   - name: 'install dependencies'
     commands:
       - echo 'executing step < install dependencies >'
