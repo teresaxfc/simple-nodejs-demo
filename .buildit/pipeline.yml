@@ -1,35 +1,39 @@
 buildTasks:
 
-  - name: 'test for artifacts'
+  - name: 'install dependencies'
     commands:
       - echo 'executing step < test for artifacts >'
       - npm install
-#      - tar zcvf package.tar.gz --exclude=*.tar.gz *
+      - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
-    artifacts: 'package.tar.gz'
+    artifact: 'package.tar.gz'
 
   - name: 'unit test'
     commands:
-#      - buildit-agent artifacts download buildid=xxx step=package files=*
       - echo 'executing step < unit test >'
       - ping localhost -w 5
+      - tar xzvf package.tar.gz -C artifact
     agents:
       queue: 'pubsub-dev'
     dependsOn:
-      - 'test for artifacts'
-    fetchArtifacts:
-      - task: 'test for artifacts'
-        artifacts: 'package.tar.gz'
+      - 'install dependencies'
+    fetchArtifact:
+      - task: 'install dependencies'
+        artifact: 'package.tar.gz'
 
   - name: 'deploy dev environment'
     commands:
       - echo 'executing step < deploy dev environment >'
       - ping localhost -w 5
+      - tar xzvf package.tar.gz -C artifact
     agents:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
+    fetchArtifact:
+      - task: 'install dependencies'
+        artifact: 'package.tar.gz'
 
   - name: 'integration test'
     commands:
