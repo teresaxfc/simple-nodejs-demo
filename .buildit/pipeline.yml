@@ -6,7 +6,7 @@ buildTasks:
       - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
-    artifact: 'package.tar.gz'
+    artifacts: 'package.tar.gz'
 
   - name: 'unit test'
     commands:
@@ -17,7 +17,7 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-    fetchArtifact:
+    fetchArtifacts:
       - task: 'install dependencies'
         artifact: 'package.tar.gz'
 
@@ -30,7 +30,7 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-    fetchArtifact:
+    fetchArtifacts:
       - task: 'install dependencies'
         artifact: 'package.tar.gz'
 
