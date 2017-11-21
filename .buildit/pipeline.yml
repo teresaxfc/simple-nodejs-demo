@@ -3,7 +3,6 @@ buildTasks:
   - name: 'install dependencies'
     commands:
       - echo 'executing step < test for artifacts >'
-      - npm install
       - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
