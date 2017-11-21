@@ -2,7 +2,7 @@ buildTasks:
 
   - name: 'install dependencies'
     commands:
-      - echo 'executing step < test for artifacts >'
+      - echo 'executing step < install dependencies >'
       - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
