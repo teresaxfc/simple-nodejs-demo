@@ -11,7 +11,7 @@ buildTasks:
   - name: 'unit test'
     commands:
       - echo 'executing step < unit test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
       - tar xzvf package.tar.gz
     agents:
       queue: 'pubsub-dev'
@@ -24,7 +24,7 @@ buildTasks:
   - name: 'deploy dev environment'
     commands:
       - echo 'executing step < deploy dev environment >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
       - tar xzvf package.tar.gz
     agents:
       queue: 'pubsub-dev'
@@ -37,7 +37,7 @@ buildTasks:
   - name: 'integration test'
     commands:
       - echo 'executing step < integration test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
     dependsOn:
@@ -46,7 +46,7 @@ buildTasks:
   - name: 'api test'
     commands:
       - echo 'executing step < api test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
     dependsOn:
@@ -55,7 +55,7 @@ buildTasks:
   - name: 'end to end test'
     commands:
       - echo 'executing step < end to end test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
     dependsOn:
@@ -64,7 +64,7 @@ buildTasks:
   - name: 'deploy production'
     commands:
       - echo 'executing step < integration test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
     depends-on:
@@ -77,7 +77,7 @@ buildTasks:
   - name: 'smoke test'
     commands:
       - echo 'executing step < integration test >'
-      - ping localhost -w 5
+#      - ping localhost -w 5
     agents:
       queue: 'pubsub-dev'
     dependsOn:
