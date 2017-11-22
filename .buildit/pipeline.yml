@@ -3,10 +3,10 @@ buildTasks:
   - name: 'install dependencies'
     commands:
       - echo 'executing step < install dependencies >'
-#      - tar czvf package.tar.gz --exclude=*.tar.gz *
+      - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
-#    artifacts: 'package.tar.gz'
+    artifacts: 'package.tar.gz'
 
   - name: 'unit test'
     commands:
