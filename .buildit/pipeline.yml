@@ -3,23 +3,23 @@ buildTasks:
   - name: 'install dependencies'
     commands:
       - echo 'executing step < install dependencies >'
-      - tar czvf package.tar.gz --exclude=*.tar.gz *
+#      - tar czvf package.tar.gz --exclude=*.tar.gz *
     agent:
       queue: 'pubsub-dev'
-    artifacts: 'package.tar.gz'
+#    artifacts: 'package.tar.gz'
 
   - name: 'unit test'
     commands:
       - echo 'executing step < unit test >'
 #      - ping localhost -w 5
-      - tar xzvf package.tar.gz
+#      - tar xzvf package.tar.gz
     agents:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-    fetchArtifacts:
-      - task: 'install dependencies'
-        artifact: 'package.tar.gz'
+#    fetchArtifacts:
+#      - task: 'install dependencies'
+#        artifact: 'package.tar.gz'
 
   - name: 'deploy dev environment'
     commands:
