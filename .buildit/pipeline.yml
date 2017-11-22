@@ -17,9 +17,9 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-#    fetchArtifacts:
-#      - task: 'install dependencies'
-#        artifact: 'package.tar.gz'
+    fetchArtifacts:
+      - task: 'install dependencies'
+        artifact: 'package.tar.gz'
 
   - name: 'deploy dev environment'
     commands:
