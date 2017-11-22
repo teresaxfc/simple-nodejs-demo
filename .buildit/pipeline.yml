@@ -25,7 +25,7 @@ buildTasks:
     commands:
       - echo 'executing step < deploy dev environment >'
 #      - ping localhost -w 5
-      - tar xzvf package.tar.gz
+#      - tar xzvf package.tar.gz
     agents:
       queue: 'pubsub-dev'
     dependsOn:
