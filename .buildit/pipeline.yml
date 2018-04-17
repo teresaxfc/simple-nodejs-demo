@@ -27,8 +27,7 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-    fetchArtifacts:
-      - { task: 'install dependencies', artifact: 'artifact.txt' }
+
   - name: 'integration test'
     commands:
       - echo 'executing step < integration test >'
@@ -37,6 +36,8 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'deploy dev environment'
+    fetchArtifacts:
+      - { task: 'install dependencies', artifact: 'artifact.txt' }
 
   - name: 'api test'
     commands:
