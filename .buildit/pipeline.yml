@@ -4,7 +4,7 @@ buildTasks:
     commands:
       - echo 'executing step < install dependencies >'
       - ping localhost -w 5
-      - echo "Artifact file" > /tmp/artifact.txt
+      - echo "Artifact file" > artifact.txt
     agent:
       queue: 'pubsub-dev'
     artifacts:
