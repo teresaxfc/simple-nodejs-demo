@@ -4,9 +4,11 @@ buildTasks:
     commands:
       - echo 'executing step < install dependencies >'
       - ping localhost -w 5
-      - echo "Artifact file" > artifact.txt
+      - echo "Artifact file" > /tmp/artifact.txt
     agent:
       queue: 'pubsub-dev'
+    artifacts:
+      - 'artifact.txt'
 
   - name: 'unit test'
     commands:
@@ -16,8 +18,8 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
-    artifacts:
-      - 'artifact.txt'
+    fetchArtifacts:
+      - { task: 'install dependencies', artifact: 'artifact.txt' }
 
   - name: 'deploy dev environment'
     commands:
@@ -36,8 +38,6 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'deploy dev environment'
-    fetchArtifacts:
-      - { task: 'install dependencies', artifact: 'artifact.txt' }
 
   - name: 'api test'
     commands:
