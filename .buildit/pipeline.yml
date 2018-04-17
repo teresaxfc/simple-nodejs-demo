@@ -4,6 +4,7 @@ buildTasks:
     commands:
       - echo 'executing step < install dependencies >'
       - ping localhost -w 5
+      - echo "Artifact file" > artifact.txt
     agent:
       queue: 'pubsub-dev'
 
@@ -15,6 +16,8 @@ buildTasks:
       queue: 'pubsub-dev'
     dependsOn:
       - 'install dependencies'
+    fetchArtifacts:
+      - { task: 'install dependencies', artifact: 'artifact.txt' }
 
   - name: 'deploy dev environment'
     commands:
